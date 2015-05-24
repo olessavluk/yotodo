@@ -1,0 +1,36 @@
+<div class="container">
+  <div ng-include="'app/components/navbar/navbar.html'"></div>
+
+  <div class="row">
+    <div class="form-horizontal">
+      <div class="form-group" ng-class="funcError">
+        <label for="func" class="col-sm-1 control-label">Function(x):</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="func" ng-model="func">
+        </div>
+      </div>
+      </div>
+
+    <!--<label for="rsM">M</label>-->
+    <div id="rsM" range-slider min="1" max="75" model-min="minM" model-max="maxM" pin-handle="min" show-values="true"></div>
+
+    <!--<label for="rsN">N</label>-->
+    <div id="rsN" range-slider min="1" max="300" model-min="minN" model-max="maxN" pin-handle="min" show-values="true"></div>
+
+      <nvd3-line-chart
+        data="graphData"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        showLegend="true"
+        interactive="true"
+        useInteractiveGuideLine="true">
+        <svg></svg>
+      </nvd3-line-chart>
+
+  </div>
+  <div class="row">
+    <div range-slider min="-100" max="100" model-min="minX" model-max="maxX" show-values="true"></div>
+  </div>
+
+</div>

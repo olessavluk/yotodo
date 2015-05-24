@@ -94,7 +94,7 @@ class GraphCtrl {
               }
             }
           }
-          
+
           if (toX > 0) {
             let n = toX / step,
               sum = 0, inc = 0,
