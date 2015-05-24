@@ -18,10 +18,10 @@ class SqrCtrl {
 
 
     $scope.$watch('[minX, maxX, maxN, maxM, func]', function () {
-      $scope.integrate();
+      $scope.build();
     });
 
-    $scope.integrate = function () {
+    $scope.build = function () {
       let f = (x) => (x),
         fromX = $scope.minX,
         toX = $scope.maxX,
@@ -135,7 +135,7 @@ class SqrCtrl {
 
     };
 
-    $scope.integrate();
+    $scope.build();
   }
 }
 
