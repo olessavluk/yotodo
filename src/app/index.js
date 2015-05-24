@@ -4,7 +4,7 @@ import MainCtrl from './main/main.controller';
 import GrapthCtrl from './graph/graph.controller.js';
 import NavbarCtrl from '../app/components/navbar/navbar.controller';
 
-angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
+angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'nvd3ChartDirectives', 'ui-rangeSlider'])
   .controller('NavbarCtrl', NavbarCtrl)
   .controller('MainCtrl', MainCtrl)
   .controller('GraphCtrl', GrapthCtrl)
