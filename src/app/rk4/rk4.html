@@ -1,0 +1,75 @@
+<div class="container">
+  <div ng-include="'app/components/navbar/navbar.html'"></div>
+
+  <div class="row">
+    <div class="form-horizontal">
+      <div class="form-group">
+        <label for="u0" class="col-sm-1 control-label">Victims</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="u0" ng-model="u0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="v0" class="col-sm-1 control-label">Predators</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="v0" ng-model="v0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="a" class="col-sm-1 control-label">a</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="a" ng-model="a">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="b" class="col-sm-1 control-label">b</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="b" ng-model="b">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="c" class="col-sm-1 control-label">c</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="c" ng-model="c">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="d" class="col-sm-1 control-label">d</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="d" ng-model="d">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="h" class="col-sm-1 control-label">Time step</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="h" ng-model="h">
+        </div>
+      </div>
+    </div>
+
+    <!--<label for="rsN">N</label>-->
+    <div id="rsN" range-slider min="1" max="99" model-min="minN" model-max="maxN" pin-handle="min" show-values="true"></div>
+
+      <nvd3-line-chart
+        data="graphData"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        showLegend="true"
+        interactive="true"
+        useInteractiveGuideLine="true">
+        <svg></svg>
+      </nvd3-line-chart>
+
+  </div>
+  <!--<div class="row">-->
+    <!--<div range-slider min="-100" max="100" model-min="minX" model-max="maxX" show-values="true"></div>-->
+  <!--</div>-->
+
+</div>
