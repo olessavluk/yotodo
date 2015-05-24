@@ -5,7 +5,7 @@ class Rk4Ctrl {
     $scope.ctl = this;
 
     $scope.minN = 1;
-    $scope.maxN = 50;
+    $scope.maxN = 95;
 
     $scope.a =  0.2;
     $scope.b =  0.005;
@@ -18,7 +18,12 @@ class Rk4Ctrl {
     $scope.h = 0.05;
     $scope.n = 2;
 
-    $scope.$watch('[a, b, c, d, u0, v0, h]', function () {
+    $scope.$watch('h', function () {
+      $scope.maxN = 100 - Number($scope.h) * 100;
+    });
+
+    $scope.$watch('[a, b, c, d, u0, v0, h, maxN]', function () {
+      $scope.h = (100 - $scope.maxN)/100;
       $scope.build();
     });
 
