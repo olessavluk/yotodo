@@ -20,6 +20,8 @@ class GraphCtrl {
 
     $scope.integrate = function () {
 
+
+      // todo: add 2 more methods
       var funcPack = {
         func : function (func, a) {
           return func(a);

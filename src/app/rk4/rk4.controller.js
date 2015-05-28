@@ -18,12 +18,12 @@ class Rk4Ctrl {
     $scope.h = 0.05;
     $scope.n = 2;
 
-    $scope.$watch('h', function () {
-      $scope.maxN = 100 - Number($scope.h) * 100;
-    });
+    //$scope.$watch('h', function () {
+    //  $scope.maxN = 100 - Number($scope.h) * 100;
+    //});
 
     $scope.$watch('[a, b, c, d, u0, v0, h, maxN]', function () {
-      $scope.h = (100 - $scope.maxN)/100;
+      //$scope.h = (100 - $scope.maxN)/100;
       $scope.build();
     });
 
@@ -31,7 +31,7 @@ class Rk4Ctrl {
 
       let x0 = 0, u0 = Number($scope.u0), v0 = Number($scope.v0),
         a = Number($scope.a), b = Number($scope.b), c = Number($scope.c), d = Number($scope.d),
-        n = 2,
+        maxN = $scope.maxN,
         h = Number($scope.h),
         uRK = [], vRK = [], xRK = [], xE = [], uE = [], vE = [];
 
@@ -40,18 +40,18 @@ class Rk4Ctrl {
 
       let euler = function () {
         let ucur, vcur, i = 0.0;
-        while (i < n / h) {
+        while (i < maxN) {
           ucur = uE[uE.length - 1] + h * f1(xE[xE.length - 1], uE[uE.length - 1], vE[vE.length - 1]);
           vcur = vE[vE.length - 1] + h * f2(xE[xE.length - 1], uE[uE.length - 1], vE[vE.length - 1]);
           xE.push(xE[xE.length - 1] + h);
           uE.push(ucur);
           vE.push(vcur);
-          i += h;
+          i = xE[xE.length - 1];
         }
       };
       let rungeKutta = function () {
         let uprev, xprev, vprev, ku1, ku2, ku3, ku4, kv1, kv2, kv3, kv4, i = 0.0;
-        while (i < n / h) {
+        while (i < maxN) {
           uprev = uRK[uRK.length - 1];
           xprev = xRK[xRK.length - 1];
           vprev = vRK[vRK.length - 1];
@@ -66,7 +66,7 @@ class Rk4Ctrl {
           uRK.push(uprev + (1 / 6.0) * (ku1 + 2 * ku2 + 2 * ku3 + ku4));
           vRK.push(vprev + (1 / 6.0) * (kv1 + 2 * kv2 + 2 * kv3 + kv4));
           xRK.push(xprev + h);
-          i += h;
+          i = xRK[xRK.length - 1];
         }
       };
 
