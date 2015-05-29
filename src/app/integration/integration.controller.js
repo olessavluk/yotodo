@@ -1,6 +1,6 @@
 'use strict';
 
-class GraphCtrl {
+class IntegrationCtrl {
   constructor($scope) {
     $scope.ctl = this;
 
@@ -19,14 +19,11 @@ class GraphCtrl {
     });
 
     $scope.integrate = function () {
-
-
-      // todo: add 2 more methods
       var funcPack = {
-        func : function (func, a) {
+        func: function (func, a) {
           return func(a);
         },
-        rectangle : function (func, a, b) {
+        rectangle: function (func, a, b) {
           var w = b - a;
           return w * func(a + w / 2);
         },
@@ -38,13 +35,25 @@ class GraphCtrl {
         //  var w = b - a;
         //  return w * func(b);
         //},
-        trapeze : function (func, a, b) {
+        trapeze: function (func, a, b) {
           var w = b - a;
           return w * (func(a) + func(b)) / 2;
         },
-        simpson : function (func, a, b) {
+        simpson: function (func, a, b) {
           var w = (b - a) / 2;
           return w / 3 * (func(a) + 4 * func(a + w) + func(a + 2 * w));
+        },
+        simpson3by8: function (func, a, b) {
+          let h = (b - a) / 3;
+          return 3 * h / 8 * (f(a) + 3 * f(a + h) + 3 * f(a + 2 * h) + f(a + 3 * h));
+        },
+        bool: function (func, a, b) {
+          let h = (b - a) / 4;
+          return 2 * h / 45 * (7 * f(a) + 32 * f(a + h) + 12 * f(a + 2 * h) + 32 * f(a + 3 * h) + 7 * f(a + 4 * h));
+        },
+        gauss: function (func, a, b) {
+          let h = (b - a) / 2;
+          return h * (f((a + b) / 2 - (b - a) / (2 * Math.sqrt(3))) + f((a + b) / 2 + (b - a) / (2 * Math.sqrt(3))));
         }
       };
 
@@ -74,7 +83,7 @@ class GraphCtrl {
       }
 
 
-      for(let funcName in funcPack) {
+      for (let funcName in funcPack) {
         if (funcPack.hasOwnProperty(funcName)) {
           let func = funcPack[funcName],
             left = [], right = [];
@@ -82,12 +91,12 @@ class GraphCtrl {
           //left part
           if (fromX < 0) {
             let n = -fromX / step,
-                sum = 0,
-                inc = 0,
-                x0, x1;
+              sum = 0,
+              inc = 0,
+              x0, x1;
             for (let i = 0; i < n; i++) {
-              x0 = - step * i;
-              x1 = - step * (i+1);
+              x0 = -step * i;
+              x1 = -step * (i + 1);
               inc = funcName === 'func' ? 0 : sum;
               sum = func(f, x0, x1) + inc;
 
@@ -104,7 +113,7 @@ class GraphCtrl {
 
             for (let i = 0; i < n; i++) {
               x0 = step * i;
-              x1 = step * (i+1);
+              x1 = step * (i + 1);
               inc = funcName === 'func' ? 0 : sum;
               sum = func(f, x0, x1) + inc;
 
@@ -115,8 +124,8 @@ class GraphCtrl {
           }
 
           graphData.push({
-            key : funcName,
-            values : left.concat(right)
+            key: funcName,
+            values: left.concat(right)
           });
         }
       }
@@ -128,6 +137,6 @@ class GraphCtrl {
   }
 }
 
-GraphCtrl.$inject = ['$scope'];
+IntegrationCtrl.$inject = ['$scope'];
 
-export default GraphCtrl;
+export default IntegrationCtrl;

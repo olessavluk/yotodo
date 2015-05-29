@@ -1,6 +1,6 @@
 'use strict';
 
-class SqrCtrl {
+class ApproxCtrl {
   constructor($scope) {
     $scope.ctl = this;
 
@@ -140,6 +140,6 @@ class SqrCtrl {
   }
 }
 
-SqrCtrl.$inject = ['$scope'];
+ApproxCtrl.$inject = ['$scope'];
 
-export default SqrCtrl;
+export default ApproxCtrl;

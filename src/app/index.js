@@ -1,16 +1,16 @@
 'use strict';
 
 import MainCtrl from './main/main.controller';
-import GrapthCtrl from './graph/graph.controller.js';
-import SqrCtrl from './sqr/sqr.controller.js';
+import IntegrationCtrl from './integration/integration.controller';
+import ApproxCtrl from './approx/approx.controller';
 import Rk4Ctrl from './rk4/rk4.controller.js';
 import NavbarCtrl from '../app/components/navbar/navbar.controller';
 
 angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'nvd3ChartDirectives', 'ui-rangeSlider'])
   .controller('NavbarCtrl', NavbarCtrl)
   .controller('MainCtrl', MainCtrl)
-  .controller('GraphCtrl', GrapthCtrl)
-  .controller('SqrCtrl', SqrCtrl)
+  .controller('IntegrationCtrl', IntegrationCtrl)
+  .controller('ApproxCtrl', ApproxCtrl)
   .controller('Rk4Ctrl', Rk4Ctrl)
 
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -20,15 +20,15 @@ angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ng
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
       })
-      .state('graph', {
-        url: '/graph',
-        templateUrl: 'app/graph/graph.html',
-        controller: 'GraphCtrl'
+      .state('integration', {
+        url: '/integration',
+        templateUrl: 'app/integration/integration.html',
+        controller: 'IntegrationCtrl'
       })
-      .state('sqr', {
-        url: '/sqr',
-        templateUrl: 'app/sqr/sqr.html',
-        controller: 'SqrCtrl'
+      .state('approx', {
+        url: '/approx',
+        templateUrl: 'app/approx/approx.html',
+        controller: 'ApproxCtrl'
       })
       .state('rk4', {
         url: '/rk4',
