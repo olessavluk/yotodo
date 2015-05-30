@@ -1,7 +1,7 @@
 'use strict';
 
 import lib from './approx.lib.js';
-var _ = require('lodash');
+import _ from 'lodash';
 
 
 class ApproxCtrl {
@@ -24,8 +24,6 @@ class ApproxCtrl {
     $scope.$watch('[minX, maxX, maxN, maxM, func]', function () {
       $scope.build();
     });
-    //todo: try realize Remez algorithm https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D0%A0%D0%B5%D0%BC%D0%B5%D0%B7%D0%B0
-    //todo: or other
     $scope.build = function () {
       let f = (x) => (x),
         fromX = $scope.minX,
@@ -44,7 +42,7 @@ class ApproxCtrl {
         return;
       }
 
-      //points
+      //sqr
       let xes = _.range(fromX, toX, step),
         funcPoints = xes.map(x => [x, f(x)]),
         sqr = lib.leastSquaresFunc(funcPoints, degree+1),

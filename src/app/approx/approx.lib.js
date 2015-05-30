@@ -1,6 +1,6 @@
 'use strict';
 
-var _ = require('lodash');
+import _ from 'lodash';
 
 /**
  * linear equation solver using gauss method
@@ -57,6 +57,20 @@ var gauss = function (matrix, freeTerm) {
 };
 
 /**
+ * Transform polynomial js function
+ * @param coeffs array polynomial coefficients from x^0, x^1, ....
+ */
+var polynomialToFunc = (coeffs) => (
+  (x) => (
+    coeffs.reduce(
+      (acc, coef, i) =>
+        (acc + coef * Math.pow(x, i)),
+      0
+    )
+  )
+);
+
+/**
  * Least Squares approximation method
  *
  * @param points points of func to be approx
@@ -90,23 +104,6 @@ var leastSquaresPolynomial = function (points, degree) {
   return gauss(matrix, freeTerm);
 };
 
-/**
- * @see leastSquaresPolynomial
- *
- * return function that return result of polynomial in some point
- */
-var leastSquaresFunc = function (points, degree) {
-  return (function (coef) {
-    return function (x) {
-      let res = 0;
-      for (let i = 0; i < degree; i++) {
-        res += coef[i] * (Math.pow(x, i));
-      }
-      return res;
-    };
-  })(leastSquaresPolynomial(points, degree));
-};
-
 var remezPolynomial = function (points) {
   //todo: add point changing and iterations?
   let total = points.length,
@@ -119,27 +116,14 @@ var remezPolynomial = function (points) {
         ) // x^degree, x^degree-1, ..., x^0, -1^row
     );
 
-  return (gauss(matrix, freeTerm)).slice(0, -1);
-};
-
-var remezFunc = function (points) {
-  return (function (coef) {
-    return function (x) {
-      let res = 0,
-        total = coef.length;
-      for (let i = 0; i < total; i++) {
-        res += coef[i] * Math.pow(x, total - i - 1);
-      }
-      return res;
-    };
-  })(remezPolynomial(points));
+  return gauss(matrix, freeTerm).slice(0, -1).reverse();
 };
 
 export default {
   //gauss,
   //leastSquaresPolynomial,
   remezPolynomial,
-  leastSquaresFunc,
-  remezFunc
+  leastSquaresFunc : (points, degree) => polynomialToFunc(leastSquaresPolynomial(points, degree)),
+  remezFunc : (points) => polynomialToFunc(remezPolynomial(points))
 };
 
