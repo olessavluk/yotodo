@@ -4,6 +4,7 @@ import MainCtrl from './main/main.controller';
 import IntegrationCtrl from './integration/integration.controller';
 import ApproxCtrl from './approx/approx.controller';
 import Rk4Ctrl from './rk4/rk4.controller.js';
+import DiffusionCtrl from './diffusion/diffusion.controller.js';
 import NavbarCtrl from '../app/components/navbar/navbar.controller';
 
 angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap', 'nvd3ChartDirectives', 'ui-rangeSlider'])
@@ -12,6 +13,7 @@ angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ng
   .controller('IntegrationCtrl', IntegrationCtrl)
   .controller('ApproxCtrl', ApproxCtrl)
   .controller('Rk4Ctrl', Rk4Ctrl)
+  .controller('DiffusionCtrl', DiffusionCtrl)
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -34,6 +36,11 @@ angular.module('yotodo', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ng
         url: '/rk4',
         templateUrl: 'app/rk4/rk4.html',
         controller: 'Rk4Ctrl'
+      })
+      .state('diffusion', {
+        url: '/diffusion',
+        templateUrl: 'app/diffusion/diffusion.html',
+        controller: 'DiffusionCtrl'
       });
 
     $urlRouterProvider.otherwise('/');

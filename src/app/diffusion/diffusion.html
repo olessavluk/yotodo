@@ -1,0 +1,48 @@
+<div class="container">
+  <div ng-include="'app/components/navbar/navbar.html'"></div>
+
+  <div class="row">
+    <div class="form-horizontal">
+      <div class="form-group" ng-class="u0Error">
+        <label for="u0" class="col-sm-1 control-label">u(x, 0):</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="u0" ng-model="u0">
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="mu1Error">
+        <label for="mu1" class="col-sm-1 control-label">u(0, t):</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="mu1" ng-model="mu1">
+        </div>
+      </div>
+
+      <div class="form-group" ng-class="mu2Error">
+        <label for="mu2" class="col-sm-1 control-label">u(1, t):</label>
+        <div class="col-sm-11">
+          <input type="text" class="form-control" id="mu2" ng-model="mu2">
+        </div>
+      </div>
+      <div style="color:red">{{funcError}}</div>
+      </div>
+    <!--<label for="rsN">Number of points</label>-->
+    <!--<div id="rsN" range-slider min="1" max="100" model-min="minN" model-max="maxN" pin-handle="min" show-values="true"></div>-->
+
+      <nvd3-line-chart
+        data="graphData"
+        height="350"
+        showXAxis="true"
+        showYAxis="true"
+        showLegend="true"
+        interactive="true"
+        useInteractiveGuideLine="true">
+        <svg></svg>
+      </nvd3-line-chart>
+
+  </div>
+  <div class="row">
+    <label for="rsT">Time:</label>
+    <div id="rsT" range-slider min="0" max="100" model-min="minT" model-max="maxT" show-values="true" pin-handle="min"></div>
+  </div>
+
+</div>
