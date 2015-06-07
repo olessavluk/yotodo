@@ -2,6 +2,8 @@
 
 import _ from 'lodash';
 
+
+//https://en.wikipedia.org/wiki/Finite_difference_method#Example:_The_heat_equation
 class DiffusionCtrl {
   constructor($scope) {
     $scope.ctl = this;
@@ -29,8 +31,14 @@ class DiffusionCtrl {
 
     $scope.funcError = '';
 
-    $scope.buildGrid = function () {
 
+    $scope.buildGrid = function () {
+      /**
+       * Linear equation with triagonal matrix solver - http://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm
+       * @param A coeffs
+       * @param B free term
+       * @returns Array polynomial
+       */
       var thomas = function(A, B) {
         let c = _.range(B.length).map(() => 0);
         c[0] = A[0][0];

@@ -104,6 +104,13 @@ var leastSquaresPolynomial = function (points, degree) {
   return gauss(matrix, freeTerm);
 };
 
+/**
+ * Remez approximation algorithm - https://en.wikipedia.org/wiki/Remez_algorithm
+ *
+ * @param points points of func to be approx
+ *
+ * @returns Array coefficients of polynomial
+ */
 var remezPolynomial = function (points) {
   //todo: add point changing and iterations?
   let total = points.length,
