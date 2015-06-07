@@ -140,7 +140,9 @@ class DiffusionCtrl {
     };
 
     $scope.refreshTime = function () {
-      if ($scope.funcError !== '') return;
+      if ($scope.funcError !== '') {
+        return;
+      }
 
       let t = $scope.maxT,
         maxX = $scope.maxX,
