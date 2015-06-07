@@ -150,7 +150,7 @@ class DiffusionCtrl {
         points = grid[t].map((y, i) => ([i*dx*maxX, y]));
       $scope.graphData = [
         {
-          key: 'lol',
+          key: 'heating',
           values: points
         }
       ];
