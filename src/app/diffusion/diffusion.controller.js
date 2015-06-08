@@ -20,6 +20,9 @@ class DiffusionCtrl {
     $scope.minX = 1;
     $scope.maxX = 101;
 
+    $scope.minK = 1;
+    $scope.maxK = 1;
+
     $scope.u0 = '1';
     $scope.u0Error = '';
 
@@ -66,7 +69,7 @@ class DiffusionCtrl {
         mu1: $scope.mu1,
         mu2: $scope.mu2
       },
-        k = 1/$scope.maxX,
+        k = $scope.maxK/$scope.maxX,
         Nx = $scope.maxNx,
         dx = 1/Nx,
         Nt = $scope.maxNt,
@@ -161,11 +164,11 @@ class DiffusionCtrl {
     $scope.buildGrid();
     $scope.refreshTime();
 
-    $scope.$watch('[u0, mu1, mu2]', function () {
+    $scope.$watch('[u0, mu1, mu2, maxK]', function () {
       $scope.buildGrid();
       $scope.refreshTime();
     });
-    $scope.$watch('[maxT]', function () {
+    $scope.$watch('[maxT, maxK]', function () {
       $scope.refreshTime();
     });
   }
