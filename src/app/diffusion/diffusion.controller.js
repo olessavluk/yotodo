@@ -90,7 +90,7 @@ class DiffusionCtrl {
       }
 
       if (Math.abs(funcs.u0(0) - funcs.mu1(0)) + Math.abs(funcs.u0(Nx) - funcs.mu2(0)) > 0.01) {
-        $scope.funcError = 'Start points conflict, consider that u0(0) = mu1(0) = mu1(0)';
+        $scope.funcError = 'Start points conflict, consider that u0(0) = mu1(0) = mu2(0), where (u0(x) = u(0, x), mu1(t) = u(t, 0), mu2(t) = u(1, t)';
         return;
       } else {
         $scope.funcError = '';
